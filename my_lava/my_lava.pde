@@ -10,7 +10,7 @@ void setup() {
   //mylava = new Lava(color(255,0,0),30,40,40);
   for(int i = 0; i < bubbles.length; i++){
   bubbles[i] = new Lava(color(random(255),random(255),random(255)),30,40,40);
-  bibbles[i] = new Lava(color(random(255),random(255),random(255)),255-i,random(80),random(8000));
+  bibbles[i] = new Lava(color(random(255),random(255),random(255)),255-i,random(80),random(80));
   }
 }
 

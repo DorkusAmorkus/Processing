@@ -1,7 +1,7 @@
 
 void setup() {
   size(800,600);
-  fill(255,0, 0);
+  fill(255,0,0);
   
   reset();
 }
@@ -51,15 +51,4 @@ void draw() {
   if ((keyPressed == true) && ((key == 'r') || (key == 'R'))) {
        reset();
   }
-}
    
-   void score() {
-    
-    if (x < 25) {
-      n += 1;
-    }
-    if ( x > width-30 && x < width -20 && y > mouseY-rectSize/2 && y < mouseY+rectSize/2 ){
-      n +=1;
-    }
-    
-}

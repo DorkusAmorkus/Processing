@@ -1,4 +1,5 @@
 
 float x, y, speedX, speedY;
 int rectSize = 200;
-int n = 1;
+
+int gameOver = 0;
