@@ -2,13 +2,19 @@
 
 
 */ 
+boolean right1 = true;  
+boolean up1 = false;
+boolean down1 = false;
+boolean left1 = false;
+boolean right2 = false;  
+boolean up2 = false;
+boolean down2 = false;
+boolean left2 = true;
 boolean GoodGame=false;
 int p1X=50;
 int p1Y=300;
-int p1Go=RIGHT;
 int p2X=550;
 int p2Y=300;
-int p2Go=LEFT;
 int p1score = 0;
 int p2score = 0;
 int round = 1;
@@ -20,7 +26,7 @@ void setup(){
 }
 
 void draw(){
-    win();
+  win();
   textSize(16);
   textAlign(LEFT);
   text("Player 1 Score:", 20, 20);
@@ -41,10 +47,16 @@ void draw(){
     background(0);
     p1X=50;
     p1Y=300;
-    p1Go=RIGHT;
+    right1 = true;  
+    up1 = false;
+    down1 = false;
+    left1 = false;
+    right2 = false;  
+    up2 = false;
+    down2 = false;
+    left2 = true;
     p2X=550;
     p2Y=300;
-    p2Go=LEFT;
     GoodGame=false;
   }
     
@@ -65,24 +77,23 @@ void p1func()
   stroke(27, 217, 222); //put P1 favorite color here
   point(p1X, p1Y);
 
-  if (p1Go==RIGHT){
-    p1X++;
+  if (right1==true){
+    p1X=p1X+1;
   }
   else{
-    if (p1Go==LEFT) {
+    if (left1==true) {
       p1X--;
     }
-    if (p1Go==UP){
+    if (up1==true){
       p1Y=p1Y-1;
     }
-    if (p1Go==DOWN){
+    if (down1==true){
       p1Y=p1Y+1;
     }
   }
 }
 
-void p2func()
-{
+void p2func(){
   if (get(p2X, p2Y) != color(0, 0, 0))
   {
     GoodGame=true;
@@ -91,58 +102,137 @@ void p2func()
   stroke(255,0,255); //put P2 favorite color here
   point(p2X, p2Y);
 
-  if (p2Go==RIGHT){
-    p2X++;
+  if (right2==true){
+    p1X++;
   }
   else{
-    if (p2Go==LEFT){
+    if (left2==true){
       p2X--;
     }
-    if (p2Go==UP){
+    if (up2==true){
       p2Y--;
     }
-    if (p2Go==DOWN){
+    if (down2==true){
       p2Y++;
     }
   }
 }
 
+
+
+
 void keyPressed(){
-  if (key=='a'){
-    p1Go=LEFT;
+  if(keyCode == '6'){
+    reset();
   }
-  else if (key=='d') {
-    p1Go=RIGHT;
+   if (keyCode =='W' && down1 != true ){
+       right1 = false;
+        left1 = false;
+        up1 = true;
+        down1 = false;
+    }
+    if (keyCode == 'S'  && up1 != true){
+        right1 = false;
+        left1 = false;
+        up1 = false;
+        down1 = true;
+    }
+    if (keyCode == 'A' && right1 != true){
+        right1 = false;
+        left1 = true;
+        up1 = false;
+        down1 = false;
+    }
+    
+    if (keyCode == 'D' && left1 != true){
+        right1 = true;
+        left1 = false;
+        up1 = false;
+        down1 = false;
+      }
+      
+    if (keyCode == UP && down2 != true ){
+       right2 = false;
+        left2 = false;
+        up2 = true;
+        down2 = false;
+    }
+    if (keyCode == DOWN  && up2 != true){
+        right2 = false;
+        left2 = false;
+        up2 = false;
+        down2 = true;
+    }
+    if (keyCode == LEFT && right2 != true){
+        right2 = false;
+        left2 = true;
+        up2 = false;
+        down2 = false;
+    }
+    
+    if (keyCode == RIGHT && left2 != true){
+        right2 = true;
+        left2 = false;
+        up2 = false;
+        down2 = false;
+      }
   }
-  else if (key=='w') {
-    p1Go=UP;
+
+void win() {
+  if (p1score==4){
+    textSize(20);
+    textAlign(CENTER);
+    text("Good Game! Player 1 Wins!", 300,280);
+    text("Press '6' to Reset", 300,320);
+    p1X=50;
+    p1Y=300;
+    right1 = false;  
+    up1 = false;
+    down1 = false;
+    left1 = false;
+    right2 = false;  
+    up2 = false;
+    down2 = false;
+    left2 = false;
+    p2X=550;
+    p2Y=300;
   }
-  else if (key =='s') {
-    p1Go=DOWN;
-  }
-  if (keyCode == LEFT){
-    p2Go=LEFT;
-  }
-  else if (keyCode == LEFT){
-    p2Go=RIGHT;
-  }
-  else if (keyCode == UP){
-    p2Go=UP;
-  }
-  else if (keyCode == DOWN){
-    p2Go=DOWN;
+  if (p2score==4){
+    textSize(20);
+    textAlign(CENTER);
+    text("Good Game! Player 2 Wins!", 300,280);
+    text("Press '6' to Reset", 300,320);
+     p1X=50;
+    p1Y=300;
+    right1 = false;  
+    up1 = false;
+    down1 = false;
+    left1 = false;
+    right2 = false;  
+    up2 = false;
+    down2 = false;
+    left2 = false;
+    p2X=550;
+    p2Y=300;
   }
 }
 
-void win() {
-   if(p1score = 4) {
-    textAlign(CENTER);
-    text("GOOD GAME! PLAYER 1 WINS!!", 60, 300);
-    text("Press Space to Restart", 110, 300);
-  }
-  if(p2score = 4) {
-    textAlign(CENTER);
-    text("GOOD GAME! PLAYER 2 WINS!!", 30, 300);
-    text("Press Space to Restart", 110, 300);
-  }
+void reset() {
+  round = 1;
+    background(0);
+    p1X=50;
+    p1Y=300;
+    right1 = true;  
+    up1 = false;
+    down1 = false;
+    left1 = false;
+    right2 = false;  
+    up2 = false;
+    down2 = false;
+    left2 = true;
+    p2X=550;
+    p2Y=300;
+    GoodGame=false;
+    p1score = 0;
+    p2score = 0;
 }

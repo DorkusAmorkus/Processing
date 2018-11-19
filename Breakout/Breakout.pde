@@ -29,6 +29,8 @@ void reset() {
         blocks[i] = 1;
       }
     }
+    
+    
 
 
 void draw() { 
